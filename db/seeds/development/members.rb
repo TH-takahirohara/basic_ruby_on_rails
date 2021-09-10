@@ -1,8 +1,10 @@
 names = %w(Taro Jiro Hana John Mike Sophy Bill Alex Mary Tom)
 fnames = ["佐藤", "鈴木", "高橋", "田中"]
 gnames = ["太郎", "次郎", "花子"]
+
+members = []
 0.upto(9) do |idx|
-  Member.create(
+  members << Member.new(
     number: idx + 10,
     name: names[idx],
     full_name: "#{fnames[idx % 4]} #{gnames[idx % 3]}",
@@ -16,7 +18,7 @@ gnames = ["太郎", "次郎", "花子"]
 end
 
 0.upto(29) do |idx|
-  Member.create(
+  members << Member.new(
     number: idx + 20,
     name: "John#{idx + 1}",
     full_name: "John Doe#{idx + 1}",
@@ -28,6 +30,8 @@ end
     password_confirmation: "password"
   )
 end
+
+Member.import members
 
 filename = "profile.png"
 path = Rails.root.join(__dir__, filename)
